@@ -1,0 +1,49 @@
+#inicializador#
+fury -> avengers
+
+#atribuição de variaveis#
+hulk -> var1."123"
+hulk -> var2."456"
+
+#atribuição e soma de variaveis#
+hulk -> var3.venom -> var1.var2
+
+#print de variaveis#
+visao -> var3
+
+#atribuição e subtração de variaveis#
+hulk -> var4 -> carnificina -> var2.var1
+visao -> var4
+
+#if maior#
+groot -> golias -> var1.var2
+lince -> visao -> var1
+
+#if comparação#
+groot -> mistica -> var2."0"
+
+#chamando funcao#
+lince -> visao -> "erro"
+
+#encerrando if comparacao#
+groot -> rocket
+
+#encerrando if maior#
+groot -> rocket
+
+hulk -> i."0"
+
+#laço de repetição #
+drEstranho -> formiga -> i."10"
+
+#soma#
+venom -> var1."1"
+
+#divisão#
+thanos -> var2."2"
+
+#encerramento laço de repetição#
+drestranho -> dormamo
+
+#encerramento de laço#
+fury -> shield
