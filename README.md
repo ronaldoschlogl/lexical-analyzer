@@ -28,9 +28,3 @@ The size of buffer, output and *.c* program can be changed as you wish.
 * [Python 3.5.0](https://www.python.org/downloads/release/python-350/) - Python
 * [PyCharm](https://www.jetbrains.com/pycharm/) - Python IDE
 
-## Authors
-
-* **Christian R. F. Gomes** - [christianrfg](https://github.com/christianrfg)
-* **Pedro Souza** - email: pedronhds@gmail.com
-
-See also the list of [contributors](https://github.com/christianrfg/lexical-analyzer/graphs/contributors) who participated in this project.
