@@ -1,4 +1,5 @@
 import re
+import array as ar
 
 
 class LexicalAnalyzer:
@@ -33,40 +34,66 @@ class LexicalAnalyzer:
             ('FLOAT_CONST', r'\d(\d)*\.\d(\d)*'),   # FLOAT
             ('INTEGER_CONST', r'\d(\d)*'),          # INT
             ('NEWLINE', r'\n'),                     # NEW LINE
-            ('SKIP', r'[ \t]+'),                    # SPACE and TABS
+            ('SKIP', r'[ \t]+'),                     # SPACE and TABS
             ('COMENTARIOS', r'\#')                  # comentarios
         ]
 
         tokens_join = '|'.join('(?P<%s>%s)' % x for x in rules)
         lin_start = 0
-
+        isComment = False
         # Lists of output for the program
         token = []
         lexeme = []
         row = []
         column = []
 
+        erro = 0
+        erro_lista = []
+        variaveis = ar.array('12','a')
+        variaveis.clear()
         # It analyzes the code to find the lexemes and their respective Tokens
         for m in re.finditer(tokens_join, code):
+            aux_var = variaveis
+            
             token_type = m.lastgroup
             token_lexeme = m.group(token_type)
-            if token_type == 'COMENTARIOS':
-                lin_start = m.end()
-                self.lin_num += 1
-            if token_type == 'NEWLINE':
-                lin_start = m.end()
-                self.lin_num += 1
-            elif token_type == 'SKIP':
-                continue
-            elif token_type == 'MISMATCH':
-                raise RuntimeError('%r unexpected on line %d' % (token_lexeme, self.lin_num))
-            else:
-                    col = m.start() - lin_start
-                    column.append(col)
-                    token.append(token_type)
-                    lexeme.append(token_lexeme)
-                    row.append(self.lin_num)
-                    # To print information about a Token
-                    print('Token = {0}, Lexeme = \'{1}\', Row = {2}, Column = {3}'.format(token_type, token_lexeme, self.lin_num, col))
+            #print(isComment)
+            if token_lexeme == '#':
+                isComment = not isComment
+            if not isComment :
+                if token_type == 'HULK':
+                    erro = 1
+                if token_type == 'CHAMADA_DE_FUNCAO':
+                    if(erro == 1):
+                        erro = 2
+                    else:
+                        erro = 0
+                if token_type == 'ID':
+                    if erro == 2 and not (token_lexeme in aux_var):
+                        variaveis.append(token_lexeme)
+                        print(' *incluido')
+                        erro = 0
+                    elif (erro != 2) and not (token_lexeme in aux_var):
+                        print(" TOMA NO CU")
+                        print("erro léxico, variável " + token_lexeme )
+                        erro = 0
+                    else:
+                        erro = 0
 
+                if token_type == 'NEWLINE':
+                    lin_start = m.end()
+                    self.lin_num += 1
+                elif token_type == 'SKIP':
+                    continue
+                elif token_type == 'MISMATCH':
+                    raise RuntimeError('%r unexpected on line %d' % (token_lexeme, self.lin_num))
+                else:
+                        col = m.start() - lin_start
+                        column.append(col)
+                        token.append(token_type)
+                        lexeme.append(token_lexeme)
+                        row.append(self.lin_num)
+                        # To print information about a Token
+                        print('Token = {0}, Lexeme = \'{1}\', Row = {2}, Column = {3}'.format(token_type, token_lexeme, self.lin_num, col))
+                        
         return token, lexeme, row, column

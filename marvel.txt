@@ -1,5 +1,5 @@
 #inicializador#
-fury -> avengers
+f111ury -> avengers
 
 #atribuição de variaveis#
 hulk -> var1."123"
@@ -34,7 +34,7 @@ groot -> rocket
 hulk -> i."0"
 
 #laço de repetição #
-drEstranho -> formiga -> i."10"
+drestranho -> formiga -> i."10"
 
 #soma#
 venom -> var1."1"
