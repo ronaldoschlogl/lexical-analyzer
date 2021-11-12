@@ -1,6 +1,6 @@
 import re
-import array as ar
 
+variaveis = []
 
 class LexicalAnalyzer:
     # Token row
@@ -29,12 +29,12 @@ class LexicalAnalyzer:
             ('LINCE', r'lince'),                    # read file
             ('CHAMADA_DE_FUNCAO', r'\-\>'),         # atribuição
             ('ATTR', r'\='),                        # =
-            ('ATRIBUIR', r'\.'),                     # ANOTHER CHARACTER
+            ('ATRIBUIR', r'\.'),                    # ANOTHER CHARACTER
             ('ID', r'[a-zA-Z]\w*'),                 # IDENTIFIERS
             ('FLOAT_CONST', r'\d(\d)*\.\d(\d)*'),   # FLOAT
             ('INTEGER_CONST', r'\d(\d)*'),          # INT
             ('NEWLINE', r'\n'),                     # NEW LINE
-            ('SKIP', r'[ \t]+'),                     # SPACE and TABS
+            ('SKIP', r'[ \t]+'),                    # SPACE and TABS
             ('COMENTARIOS', r'\#')                  # comentarios
         ]
 
@@ -48,9 +48,7 @@ class LexicalAnalyzer:
         column = []
 
         erro = 0
-        erro_lista = []
-        variaveis = ar.array('12','a')
-        variaveis.clear()
+        
         # It analyzes the code to find the lexemes and their respective Tokens
         for m in re.finditer(tokens_join, code):
             aux_var = variaveis
@@ -71,10 +69,8 @@ class LexicalAnalyzer:
                 if token_type == 'ID':
                     if erro == 2 and not (token_lexeme in aux_var):
                         variaveis.append(token_lexeme)
-                        print(' *incluido')
                         erro = 0
                     elif (erro != 2) and not (token_lexeme in aux_var):
-                        print(" TOMA NO CU")
                         print("erro léxico, variável " + token_lexeme )
                         erro = 0
                     else:

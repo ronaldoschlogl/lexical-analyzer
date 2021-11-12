@@ -22,8 +22,9 @@ lince -> visao -> var1
 #if comparação#
 groot -> mistica -> var2."0"
 
+hulk -> erro."erro"
 #chamando funcao#
-lince -> visao -> "erro"
+lince -> visao -> erro
 
 #encerrando if comparacao#
 groot -> rocket
